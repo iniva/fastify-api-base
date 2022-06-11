@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "module": "commonjs",
+    "target": "es2020",
+    "types": [
+      "node"
+    ],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "outDir": "./dist"
+  },
+  "paths": {
+    "@typings/*": [
+      "typings/*"
+    ],
+    "@plugins/*": [
+      "plugins/*"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

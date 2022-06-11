@@ -1,0 +1,45 @@
+{
+  "name": "fastify-api-base",
+  "version": "1.0.0",
+  "description": "Opinionated base code for a Fastify API",
+  "main": "index.js",
+  "repository": "git@github.com:iniva/fastify-api-base.git",
+  "author": "Tony Di Benedetto <tonyblast@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.22.0"
+  },
+  "scripts": {
+    "build": "rm -rf .dist && tsc",
+    "dev": "nodemon",
+    "test:lint": "eslint . --ext .ts",
+    "test:lint-fix": "eslint . --ext .ts --fix",
+    "release": "SKIP_PREPARE_COMMIT=true standard-version",
+    "release:dry": "SKIP_PREPARE_COMMIT=true standard-version --dry-run",
+    "start": "node -r tsconfig-paths/register /app/src/index.js",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "fastify": "^4.0.1",
+    "tsconfig-paths": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.18.21",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.17.0",
+    "husky": "^8.0.0",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
