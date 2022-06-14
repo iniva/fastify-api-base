@@ -1,7 +1,7 @@
 import devConfig from './dev'
 import testConfig from './test'
 import prodConfig from './prod'
-import { Configurations } from 'typings/Configurations'
+import { Configurations } from '@typings/Configurations'
 
 const env = process.env.NODE_ENV
 let config: Configurations

@@ -13,15 +13,15 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
-    "outDir": "./dist"
-  },
-  "paths": {
-    "@typings/*": [
-      "typings/*"
-    ],
-    "@plugins/*": [
-      "plugins/*"
-    ]
+    "outDir": "./dist",
+    "paths": {
+      "@typings/*": [
+        "typings/*"
+      ],
+      "@plugins/*": [
+        "plugins/*"
+      ]
+    },
   },
   "include": [
     "src/**/*"

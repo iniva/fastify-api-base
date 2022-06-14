@@ -1,11 +1,9 @@
-import { FastifyInstance } from 'fastify'
+import { AppWithPlugins } from '@typings/App'
 
-const health = async (server: FastifyInstance): Promise<void> => {
-  server.get('/', async () => {
+const health = async (app: AppWithPlugins): Promise<void> => {
+  app.get('/', async () => {
     return {
-      data: {
-        message: 'All good here, thanks for asking!'
-      }
+      message: 'All good here, thanks for asking!'
     }
   })
 }

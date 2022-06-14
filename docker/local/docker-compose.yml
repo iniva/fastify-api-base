@@ -19,7 +19,8 @@ services:
       - ../../knexfile.ts:/app/knexfile.ts
     command: ["yarn", "dev"]
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   postgres:
     image: postgres:12-alpine
@@ -33,6 +34,11 @@ services:
       - api-network
     volumes:
       - ./data/db:/data/db
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "dev", "-d", "develop" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
     logging:
       driver: none
 
