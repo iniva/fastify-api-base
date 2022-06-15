@@ -1,14 +1,8 @@
 import { Type } from '@sinclair/typebox'
-import { FastifyRequest, FastifySchema } from 'fastify'
 
+import { FastifyRequestTypebox } from '@typings/App'
 import { PostDto } from '../dto'
 import { PostService } from '../service'
-
-export const handler = (service: PostService) => async (req: FastifyRequest): Promise<PostDto[]> => {
-  const posts = await service.find()
-
-  return posts
-}
 
 const QuerystringSchema = Type.Object({
   limit: Type.Optional(
@@ -17,8 +11,14 @@ const QuerystringSchema = Type.Object({
   offset: Type.Optional(
     Type.String({ minLength: 1 })
   )
-})
+}, { additionalProperties: false })
 
-export const schema: FastifySchema = {
+export const ListPostSchema = {
   querystring: QuerystringSchema
+}
+
+export const handler = (service: PostService) => async (req: FastifyRequestTypebox<typeof ListPostSchema>): Promise<PostDto[]> => {
+  const posts = await service.find(req.query)
+
+  return posts
 }

@@ -6,6 +6,7 @@ import { isNil } from 'lodash'
 import { AppWithPlugins } from '@typings/App'
 import { PostDto } from './dto'
 import { Pagination, PostFilters, PostsRepository } from './repository'
+import { PostNotFoundException } from './exception'
 
 type UnknownObject = Record<string, string>
 
@@ -18,7 +19,7 @@ const service = (database: Knex) => {
     const post = await repository.findById(id)
 
     if (post === null) {
-      throw new Error('Post not found')
+      throw new PostNotFoundException()
     }
 
     return post
