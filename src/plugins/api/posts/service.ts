@@ -8,9 +8,7 @@ import { PostDto } from './dto'
 import { Pagination, PostFilters, PostsRepository } from './repository'
 import { PostNotFoundException } from './exception'
 
-type UnknownObject = Record<string, string>
-
-export type PostService = ReturnType<typeof service>
+type Query = PostFilters & Partial<Pagination>
 
 const service = (database: Knex) => {
   const repository = new PostsRepository(database, 'posts')
@@ -25,7 +23,7 @@ const service = (database: Knex) => {
     return post
   }
 
-  const find = async (query?: unknown): Promise<PostDto[]> => {
+  const find = async (query?: Query): Promise<PostDto[]> => {
     const filters = getPostFilters(query)
     const pagination = getPagination(query)
     const results = await repository.find(filters, pagination)
@@ -45,27 +43,24 @@ const service = (database: Knex) => {
     await repository.delete(id)
   }
 
-  const getPostFilters = (query?: unknown): PostFilters | undefined => {
+  const getPostFilters = (query?: Query): PostFilters | undefined => {
     if (isNil(query)) {
       return
     }
 
-    const queryParams = <UnknownObject>query
-    const filterValues: PostFilters = {}
-
-    // for (const filter of Object.keys(queryParams)) {
-    //   filterValues[filter] = queryParams[filter]
-    // }
-
-    return filterValues
+    return {
+      title: query.title,
+      author: query.author,
+      published: query.published
+    }
   }
 
-  const getPagination = (query?: unknown): Pagination | undefined => {
+  const getPagination = (query?: Query): Pagination | undefined => {
     if (isNil(query)) {
       return
     }
 
-    const queryParams = <UnknownObject>query
+    const queryParams = query
 
     let limit = 0
     let offset = 0
@@ -103,6 +98,8 @@ const plugin = (app: AppWithPlugins, _options: FastifyPluginOptions, next: HookH
 
   next()
 }
+
+export type PostService = ReturnType<typeof service>
 
 export default fastifyPlugin(plugin, {
   name: 'post-service'

@@ -6,10 +6,19 @@ import { PostService } from '../service'
 
 const QuerystringSchema = Type.Object({
   limit: Type.Optional(
-    Type.String({ minLength: 1, maxLength: 100 })
+    Type.Number({ minimum: 1, maximum: 100 })
   ),
   offset: Type.Optional(
-    Type.String({ minLength: 1 })
+    Type.Number({ minimum: 1 })
+  ),
+  title: Type.Optional(
+    Type.String({ minLength: 2 })
+  ),
+  author: Type.Optional(
+    Type.String({ minLength: 2 })
+  ),
+  published: Type.Optional(
+    Type.Boolean()
   )
 }, { additionalProperties: false })
 

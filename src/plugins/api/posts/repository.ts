@@ -52,11 +52,14 @@ export class PostsRepository {
   async find(filters?: PostFilters, pagination?: Pagination): Promise<PostDto[] | null> {
     const queryBuilder = this._db(this._table).select()
 
-    // if (!isNil(filters)) {
-    //   for (const key of Object.keys(filters)) {
-    //     queryBuilder.andWhere({ [key]: filters[key] })
-    //   }
-    // }
+    if (!isNil(filters)) {
+      for (const [key, value] of Object.entries(filters)) {
+        if (value) {
+          console.log({ [key]: value })
+          queryBuilder.andWhereILike(key, `%${value}%`)
+        }
+      }
+    }
 
     const paginate = this.paginate(pagination)
 
