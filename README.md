@@ -8,15 +8,16 @@ Opinionated API based on [Fastify](https://www.fastify.io) <img src="https://www
 - [ ] **Database**: Postgres
 - Endpoints:
   - [x] Healthcheck
+  - [x] Posts
   - [ ] ...
 - Docker:
   - [x] **local**: for development
-  - [ ] **test-integration**: for integration tests
+  - [x] **test-integration**: for integration tests
   - [x] **live**: for deployment (dev, staging, prod, etc.)
 - [ ] **CI**: GitHub workflow with running tests:
   - [x] lint
   - [ ] coverage
-  - [ ] integration
+  - [x] integration
 
 ## Local Setup
 - Clone this repo
@@ -35,4 +36,8 @@ Opinionated API based on [Fastify](https://www.fastify.io) <img src="https://www
 
   # for automatic lint fixes
   yarn test:lint-fix
+  ```
+- **Integration**
+  ```sh
+  cd docker/test-integration && bash run.sh
   ```
