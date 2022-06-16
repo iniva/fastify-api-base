@@ -55,8 +55,9 @@ export class PostsRepository {
     if (!isNil(filters)) {
       for (const [key, value] of Object.entries(filters)) {
         if (value) {
-          console.log({ [key]: value })
-          queryBuilder.andWhereILike(key, `%${value}%`)
+          key === 'published'
+            ? queryBuilder.andWhere(key, value)
+            : queryBuilder.andWhereILike(key, `%${value}%`)
         }
       }
     }
