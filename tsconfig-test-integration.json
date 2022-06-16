@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "baseUrl": "./src",
     "outDir": "./dist",
@@ -24,6 +25,7 @@
     },
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ]
 }

@@ -1,25 +1,33 @@
 import fastify from 'fastify'
+import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
+import fastifyHelmet from '@fastify/helmet'
 
 import config from './config'
-import api from './plugins/api'
+import databasePlugin from '@plugins/database'
+import apiPlugin from '@plugins/api'
 
-const server = fastify(config.app)
+const app = fastify(config.app).withTypeProvider<TypeBoxTypeProvider>()
 
-// Plugins
+// Fastify Ecosystem Plugins
+// - Security
+app.register(fastifyHelmet, { global: true })
+// Our Plugins
+// - Database
+app.register(databasePlugin, config.database)
 // - API
-api(server)
+app.register(apiPlugin)
 
-server.ready(() => {
+app.ready(() => {
   if (config.debug.routes) {
-    console.log(server.printRoutes({ commonPrefix: false }))
+    console.log(app.printRoutes({ commonPrefix: false }))
   }
 
   if (config.debug.plugins) {
-    console.log(server.printPlugins())
+    console.log(app.printPlugins())
   }
 })
 
-server.listen(config.server, (err, address) => {
+app.listen(config.server, (err, address) => {
   if (err) {
     console.error(err)
     process.exit(1)
