@@ -5,7 +5,7 @@ Opinionated API based on [Fastify](https://www.fastify.io) <img src="https://www
 
 ## Included
 - [ ] **Authentication**
-- [ ] **Database**: Postgres
+- [x] **Database**: Postgres (using Knex + Knex migrations)
 - Endpoints:
   - [x] Healthcheck
   - [x] Posts
