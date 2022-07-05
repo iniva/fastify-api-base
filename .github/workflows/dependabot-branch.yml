@@ -13,7 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: Cloning main branch
-        ref: main
+        with:
+          ref: main
 
       - name: Updating "dependabot-updates" branch
         run: |
