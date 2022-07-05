@@ -16,7 +16,7 @@ jobs:
         ref: main
 
       - name: Updating "dependabot-updates" branch
-        run: \
+        run: |
           echo "Switching to 'dependabot-updates' branch"
           git checkout dependabot-updates
 
