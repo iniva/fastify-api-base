@@ -22,7 +22,7 @@ jobs:
           git checkout dependabot-updates
 
           echo "Merging latest changes from 'main'"
-          git pull . main
+          git pull origin main
 
           echo "Add commit message"
           git commit -m "chore: merge with latest changes from main"
