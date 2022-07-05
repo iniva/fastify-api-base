@@ -1,0 +1,29 @@
+name: Dependabot Branch
+
+# This event is triggered on pushes to main
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  update:
+    name: Update "dependabot-updates" branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Cloning all branches for this repository
+        with:
+          fetch-depth: 0
+
+      - name: Updating "dependabot-updates" branch
+        run: |
+          echo "Switching to 'dependabot-updates' branch"
+          git checkout dependabot-updates
+
+          echo "Merging latest changes from 'main'"
+          git pull origin main
+
+          echo "Pushing to 'dependabot-updates' branch"
+          git push origin dependabot-updates
+
