@@ -27,13 +27,6 @@ jobs:
           echo "Merging latest changes from 'main'"
           git pull origin main
 
-          echo "Setting user for this commit"
-          git config --global user.email "${AUTHOR_EMAIL}"
-          git config --global user.name "${AUTHOR_NAME}"
-
-          echo "Adding commit message"
-          git commit -m "chore: merge with latest changes from main"
-
           echo "Pushing to 'dependabot-updates' branch"
           git push origin dependabot-updates
 
