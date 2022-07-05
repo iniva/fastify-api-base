@@ -17,6 +17,9 @@ jobs:
           fetch-depth: 0
 
       - name: Updating "dependabot-updates" branch
+        env:
+          AUTHOR_EMAIL: ${{ github.event.pusher.email }}
+          AUTHOR_NAME: ${{ github.event.pusher.name }}
         run: |
           echo "Switching to 'dependabot-updates' branch"
           git checkout dependabot-updates
@@ -24,9 +27,13 @@ jobs:
           echo "Merging latest changes from 'main'"
           git pull origin main
 
-          echo "Add commit message"
+          echo "Setting user for this commit"
+          git config --global user.email "${AUTHOR_EMAIL}"
+          git config --global user.name "${AUTHOR_NAME}"
+
+          echo "Adding commit message"
           git commit -m "chore: merge with latest changes from main"
 
-          echo "Push to 'dependabot-updates' branch"
+          echo "Pushing to 'dependabot-updates' branch"
           git push origin dependabot-updates
 
