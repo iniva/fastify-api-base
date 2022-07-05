@@ -4,7 +4,7 @@ name: Dependabot Branch
 on:
   push:
     branches:
-      - 'main'
+      - 'dependabot-updates-management'
 
 jobs:
   update:
