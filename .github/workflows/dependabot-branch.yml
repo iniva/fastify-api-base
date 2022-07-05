@@ -4,7 +4,7 @@ name: Dependabot Branch
 on:
   push:
     branches:
-      - 'dependabot-updates-management'
+      - 'main'
 
 jobs:
   update:
@@ -17,9 +17,6 @@ jobs:
           fetch-depth: 0
 
       - name: Updating "dependabot-updates" branch
-        env:
-          AUTHOR_EMAIL: ${{ github.event.pusher.email }}
-          AUTHOR_NAME: ${{ github.event.pusher.name }}
         run: |
           echo "Switching to 'dependabot-updates' branch"
           git checkout dependabot-updates
