@@ -4,7 +4,7 @@ name: Dependabot Updates
 on:
   push:
     branches:
-      - 'improve-dependabot-updates-ci'
+      - 'main'
 
 env:
   DEPENDABOT_BRANCH: dependabot-updates
