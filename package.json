@@ -32,7 +32,7 @@
     "knex": "^2.2.0",
     "lodash": "^4.17.21",
     "pg": "^8.7.3",
-    "tsconfig-paths": "^4.0.0",
+    "tsconfig-paths": "^4.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
