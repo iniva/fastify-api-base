@@ -27,7 +27,7 @@
     "@fastify/helmet": "^9.1.0",
     "@fastify/type-provider-typebox": "^1.0.0",
     "@sinclair/typebox": "^0.23.5",
-    "fastify": "^4.8.1",
+    "fastify": "^4.10.2",
     "fastify-plugin": "^3.0.1",
     "knex": "^2.1.0",
     "lodash": "^4.17.21",
